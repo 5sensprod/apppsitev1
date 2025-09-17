@@ -1,0 +1,152 @@
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { AlertCircle, CheckCircle2, Sparkles } from "lucide-react";
+
+export default function ShadcnTest() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const handleSubmit = () => {
+    if (inputValue.trim()) {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+    }
+  };
+
+  return (
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-background text-foreground p-8 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              Test shadcn/ui
+            </h1>
+            <p className="text-muted-foreground">
+              Tous vos composants shadcn/ui sont prêts à utiliser !
+            </p>
+            <Button onClick={toggleTheme} variant="outline" className="gap-2">
+              <Sparkles className="w-4 h-4" />
+              {darkMode ? "Mode Clair" : "Mode Sombre"}
+            </Button>
+          </div>
+
+          {/* Alert de succès */}
+          {showAlert && (
+            <Alert className="border-green-200 bg-green-50 dark:bg-green-950 dark:border-green-800">
+              <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <AlertDescription className="text-green-800 dark:text-green-200">
+                Parfait ! Votre configuration shadcn/ui fonctionne correctement.
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* Grille de composants */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Card avec boutons */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  Boutons & Actions
+                </CardTitle>
+                <CardDescription>Différents styles de boutons disponibles</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <Button>Primary</Button>
+                  <Button variant="secondary">Secondary</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="ghost">Ghost</Button>
+                  <Button variant="destructive" size="sm">
+                    Delete
+                  </Button>
+                </div>
+                <div className="flex gap-2">
+                  <Badge>Nouveau</Badge>
+                  <Badge variant="secondary">Beta</Badge>
+                  <Badge variant="outline">v1.0</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Card avec formulaire */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-blue-500" />
+                  Formulaires & Inputs
+                </CardTitle>
+                <CardDescription>Testez les composants de saisie</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Message de test</label>
+                  <Input
+                    placeholder="Tapez quelque chose..."
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                </div>
+                <Button onClick={handleSubmit} className="w-full" disabled={!inputValue.trim()}>
+                  Tester la configuration
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Informations sur la configuration */}
+            <Card className="md:col-span-2 bg-gradient-to-br from-primary/5 to-purple-500/5">
+              <CardHeader>
+                <CardTitle>✨ Configuration validée</CardTitle>
+                <CardDescription>
+                  Votre projet est parfaitement configuré pour shadcn/ui
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="space-y-1">
+                    <div className="font-medium text-green-600 dark:text-green-400">
+                      ✓ Tailwind CSS
+                    </div>
+                    <div className="text-muted-foreground">Configuration complète</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium text-green-600 dark:text-green-400">
+                      ✓ Variables CSS
+                    </div>
+                    <div className="text-muted-foreground">Thèmes clair/sombre</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium text-green-600 dark:text-green-400">
+                      ✓ Lucide Icons
+                    </div>
+                    <div className="text-muted-foreground">Icônes prêtes</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Info importante */}
+          <Alert>
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Prêt à développer !</strong> Vous pouvez maintenant utiliser tous les
+              composants shadcn/ui. Les imports comme <code>@/components/ui/button</code>{" "}
+              fonctionnent directement dans cet environnement.
+            </AlertDescription>
+          </Alert>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,278 @@
+/* src/design/tokens.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   TOKENS CSS - Variables de design system
+   ========================================================================== */
+
+:root {
+  /* Colors - Format HSL pour faciliter les variations */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+
+  /* Typography */
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Spacing Scale - Plus logique pour les sections */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 1rem; /* 16px */
+  --spacing-md: 1.5rem; /* 24px */
+  --spacing-lg: 2rem; /* 32px */
+  --spacing-xl: 3rem; /* 48px */
+  --spacing-2xl: 4rem; /* 64px */
+  --spacing-3xl: 6rem; /* 96px */
+
+  /* Border Radius */
+  --radius: 0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Animation */
+  --animation-duration: 150ms;
+  --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Density - pour compact/comfortable */
+  --density: 1;
+}
+
+/* ==========================================================================
+   DARK THEME
+   ========================================================================== */
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+/* ==========================================================================
+   OCEAN THEME (Scoped)
+   ========================================================================== */
+
+.theme-ocean {
+  --background: 200 100% 97%;
+  --foreground: 200 85% 6%;
+
+  --primary: 200 98% 39%;
+  --primary-foreground: 200 100% 97%;
+
+  --secondary: 200 23% 89%;
+  --secondary-foreground: 200 85% 6%;
+
+  --muted: 200 23% 89%;
+  --muted-foreground: 200 8% 46%;
+
+  --accent: 195 100% 85%;
+  --accent-foreground: 200 85% 6%;
+
+  --border: 200 18% 81%;
+  --ring: 200 98% 39%;
+}
+
+/* Dark + Ocean */
+.dark.theme-ocean {
+  --background: 200 63% 8%;
+  --foreground: 200 11% 91%;
+
+  --primary: 200 91% 58%;
+  --primary-foreground: 200 63% 8%;
+
+  --secondary: 200 15% 16%;
+  --secondary-foreground: 200 11% 91%;
+
+  --muted: 200 15% 16%;
+  --muted-foreground: 200 8% 65%;
+
+  --accent: 200 15% 16%;
+  --accent-foreground: 200 11% 91%;
+}
+
+/* ==========================================================================
+   CORPORATE THEME (Scoped)
+   ========================================================================== */
+
+.theme-corporate {
+  --background: 0 0% 98%;
+  --foreground: 225 15% 15%;
+
+  --primary: 225 100% 25%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 225 10% 92%;
+  --secondary-foreground: 225 15% 15%;
+
+  --muted: 225 10% 92%;
+  --muted-foreground: 225 5% 45%;
+
+  --accent: 45 100% 85%;
+  --accent-foreground: 225 15% 15%;
+
+  --border: 225 8% 85%;
+  --ring: 225 100% 25%;
+}
+
+/* ==========================================================================
+   DENSITY VARIANTS
+   ========================================================================== */
+
+.density-compact {
+  --density: 0.75;
+  --spacing-xs: calc(0.5rem * var(--density));
+  --spacing-sm: calc(0.75rem * var(--density));
+  --spacing-md: calc(1rem * var(--density));
+  --spacing-lg: calc(1.5rem * var(--density));
+  --spacing-xl: calc(2rem * var(--density));
+}
+
+.density-comfortable {
+  --density: 1.25;
+  --spacing-xs: calc(0.5rem * var(--density));
+  --spacing-sm: calc(0.75rem * var(--density));
+  --spacing-md: calc(1rem * var(--density));
+  --spacing-lg: calc(1.5rem * var(--density));
+  --spacing-xl: calc(2rem * var(--density));
+}
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in var(--animation-duration) var(--animation-timing);
+  }
+
+  .animate-out {
+    animation: animate-out var(--animation-duration) var(--animation-timing);
+  }
+
+  /* Spacing utilities with CSS variables */
+  .space-y-xs > * + * {
+    margin-top: var(--spacing-xs);
+  }
+  .space-y-sm > * + * {
+    margin-top: var(--spacing-sm);
+  }
+  .space-y-md > * + * {
+    margin-top: var(--spacing-md);
+  }
+  .space-y-lg > * + * {
+    margin-top: var(--spacing-lg);
+  }
+  .space-y-xl > * + * {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animate-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
