@@ -1,6 +1,7 @@
 // src/components/layout/AppLayout.jsx
 import React from "react";
 import PropTypes from "prop-types";
+import { Outlet } from "react-router-dom";
 import { cn } from "@/design/utils";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -13,11 +14,11 @@ import { Breadcrumbs } from "./Breadcrumbs";
  * @param {boolean} props.showHeader - Afficher le header (true par défaut)
  * @param {boolean} props.showFooter - Afficher le footer (true par défaut)
  * @param {boolean} props.showBreadcrumbs - Afficher les breadcrumbs (false par défaut)
- * @param {Array} props.breadcrumbs - Items breadcrumbs [{label, href}]
+ * @param {Array} props.breadcrumbs - Items breadcrumbs [{label, href, current}]
  * @param {boolean} props.fixedHeader - Header fixe (false par défaut)
  * @param {string} props.headerVariant - Variant du header ('default'|'transparent'|'colored')
  * @param {string} props.footerVariant - Variant du footer ('default'|'minimal'|'extended')
- * @param {string} props.maxWidth - Largeur max du contenu ('full'|'7xl'|'6xl'|'5xl')
+ * @param {string} props.maxWidth - Largeur max du contenu ('full'|'7xl'|'6xl'|'5xl'|'4xl')
  * @param {string} props.className - Classes CSS additionnelles
  */
 export function AppLayout({
@@ -33,6 +34,9 @@ export function AppLayout({
   className,
   ...props
 }) {
+  // Si utilisé comme route parent (<Route element={<AppLayout/>}>), on rend l'Outlet.
+  const content = children ?? <Outlet />;
+
   return (
     <div className={cn("min-h-screen flex flex-col", className)} {...props}>
       {/* Header */}
@@ -69,7 +73,7 @@ export function AppLayout({
         <div
           className={cn("flex-1", maxWidth === "full" ? "" : `mx-auto w-full max-w-${maxWidth}`)}
         >
-          {children}
+          {content}
         </div>
       </main>
 
@@ -80,7 +84,7 @@ export function AppLayout({
 }
 
 AppLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   showHeader: PropTypes.bool,
   showFooter: PropTypes.bool,
   showBreadcrumbs: PropTypes.bool,
