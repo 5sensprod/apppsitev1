@@ -12,6 +12,7 @@ import {
   Zap,
   Grid3x3,
   Target,
+  CreditCard,
 } from "lucide-react";
 import { config } from "./config.js";
 import Home from "./pages/Home.jsx";
@@ -19,6 +20,7 @@ import Primitives from "./pages/Primitives.jsx";
 import HeroDemo from "./pages/HeroDemo.jsx";
 import FeaturesDemo from "./pages/FeaturesDemo.jsx";
 import CTADemo from "./pages/CTADemo.jsx";
+import AdvancedBlocksDemo from "./pages/AdvancedBlocksDemo.jsx";
 import { ThemeProvider, useTheme } from "@/design/ThemeProvider";
 import "@/design/tokens.css";
 
@@ -82,6 +84,13 @@ function Navigation() {
           </Button>
 
           <Button asChild variant="ghost" size="sm">
+            <Link to="/advanced" className="inline-flex items-center">
+              <CreditCard className="size-4 mr-2" />
+              Advanced
+            </Link>
+          </Button>
+
+          <Button asChild variant="ghost" size="sm">
             <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
               Vite
             </a>
@@ -123,6 +132,9 @@ function Navigation() {
           <Button asChild variant="ghost" size="sm">
             <Link to="/cta">CTA</Link>
           </Button>
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/advanced">Advanced</Link>
+          </Button>
         </div>
       </div>
     </nav>
@@ -141,6 +153,7 @@ export default function App() {
             <Route path="/hero" element={<HeroDemo />} />
             <Route path="/features" element={<FeaturesDemo />} />
             <Route path="/cta" element={<CTADemo />} />
+            <Route path="/advanced" element={<AdvancedBlocksDemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
@@ -178,6 +191,18 @@ export default function App() {
                     className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     FeaturesBlock - 3 variants (grid, list, cards)
+                  </Link>
+                  <Link
+                    to="/cta"
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    CTABlock - 3 variants (banner, card, inline)
+                  </Link>
+                  <Link
+                    to="/advanced"
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Advanced Blocks - PricingBlock & MediaTextBlock (Sprint 2)
                   </Link>
                 </div>
               </div>
