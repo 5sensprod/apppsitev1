@@ -1,282 +1,295 @@
-// src/pages/Primitives.jsx
+// src/pages/Home.jsx
 import React from "react";
-import { Section, Container, Heading, Stack, Text, Image, Grid } from "@/components/primitives";
+import { Section, Heading, Text, Stack, Grid } from "@/components/primitives";
+import { HeroBlock } from "@/components/blocks/HeroBlock";
+import { FeaturesBlock } from "@/components/blocks/FeaturesBlock";
+import { CTABlock } from "@/components/blocks/CTABlock";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Zap, Grid3x3, Target, Layers, CreditCard, Layout as LayoutIcon } from "lucide-react";
 
 /**
- * Page de démonstration de toutes les primitives
+ * Page d'accueil - Présentation générale du système
+ * Note: Utilise AppLayout via App.jsx
  */
 export default function Home() {
+  // Données pour les features
+  const systemFeatures = [
+    {
+      id: "primitives",
+      icon: <Layers className="w-6 h-6" />,
+      title: "Primitives solides",
+      description:
+        "Section, Stack, Text, Image, Grid - composants de base réutilisables avec variants cohérents.",
+      href: "/primitives",
+    },
+    {
+      id: "blocks",
+      icon: <Grid3x3 className="w-6 h-6" />,
+      title: "Blocks modulaires",
+      description:
+        "Hero, Features, CTA, Pricing, MediaText - blocks métier composables en JSX natif.",
+      href: "/hero",
+    },
+    {
+      id: "theming",
+      icon: <Zap className="w-6 h-6" />,
+      title: "Théming avancé",
+      description: "Dark mode, thèmes multiples, densité adaptable via CSS variables et tokens.",
+      href: "#theming",
+    },
+  ];
+
+  const architectureStats = [
+    { label: "Primitives", value: "7", description: "Composants de base" },
+    { label: "Blocks", value: "5", description: "Sprint 1 & 2" },
+    { label: "Thèmes", value: "4", description: "Default, Dark, Ocean, Corporate" },
+    { label: "Pages demo", value: "6", description: "Documentation complète" },
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <Section background="primary" spacing="lg" container={true} themeScope="corporate">
-        <Stack gap="md" align="center">
-          <Heading level={1} size="3xl" eyebrow="Documentation">
-            Primitives React Page Builder
-          </Heading>
-          <Text variant="lead" align="center" className="text-primary-foreground/80">
-            Composants de base réutilisables avec variants cohérents
-          </Text>
-        </Stack>
-      </Section>
+      {/* Hero principal */}
+      <HeroBlock
+        variant="centered"
+        size="xl"
+        background="primary"
+        eyebrow="React Page Builder"
+        title="Architecture moderne pour sites performants"
+        subtitle="Primitives + Blocks + Théming = JSX composable sans sur-engineering. Sprint 1 & 2 terminés avec AppLayout complet."
+        cta={{
+          text: "Explorer les primitives",
+          href: "/primitives",
+        }}
+        secondaryCta={{
+          text: "Voir les blocks",
+          href: "/hero",
+          variant: "outline",
+        }}
+      />
 
-      {/* Stack Demo */}
+      {/* Features du système */}
+      <FeaturesBlock
+        variant="grid"
+        size="lg"
+        background="muted"
+        eyebrow="Architecture Sprint 1 & 2"
+        title="Système complet et production-ready"
+        subtitle="De la primitive de base au layout complexe, tout est pensé pour la réutilisabilité et la performance."
+        features={systemFeatures}
+        columns={3}
+      />
+
+      {/* Stats & Navigation rapide */}
       <Section spacing="lg" container={true}>
-        <Stack gap="lg">
-          <Heading level={2} size="2xl" eyebrow="Stack Component">
-            Empilement vertical avec gaps
-          </Heading>
+        <Stack gap="xl">
+          <div className="text-center">
+            <Heading level={2} size="2xl" weight="bold" className="mb-4">
+              Vue d'ensemble
+            </Heading>
+            <Text variant="lead" className="text-muted-foreground max-w-2xl mx-auto">
+              Naviguez vers les pages de démonstration pour voir chaque composant en action
+            </Text>
+          </div>
 
-          <Grid cols={2} gap="lg">
-            <div className="border rounded-lg p-6 bg-card">
-              <Heading level={3} size="lg" className="mb-4">
-                Gap variants
-              </Heading>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {architectureStats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
+                <div className="font-medium text-foreground mb-1">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">{stat.description}</div>
+              </div>
+            ))}
+          </div>
 
-              <Stack gap="xs" className="mb-6">
-                <Text variant="small">Stack gap="xs"</Text>
-                <div className="h-4 bg-muted rounded"></div>
-                <div className="h-4 bg-muted rounded"></div>
-                <div className="h-4 bg-muted rounded"></div>
-              </Stack>
-
-              <Stack gap="md" className="mb-6">
-                <Text variant="small">Stack gap="md"</Text>
-                <div className="h-4 bg-accent rounded"></div>
-                <div className="h-4 bg-accent rounded"></div>
-                <div className="h-4 bg-accent rounded"></div>
-              </Stack>
-
-              <Stack gap="xl">
-                <Text variant="small">Stack gap="xl"</Text>
-                <div className="h-4 bg-primary rounded"></div>
-                <div className="h-4 bg-primary rounded"></div>
-                <div className="h-4 bg-primary rounded"></div>
-              </Stack>
-            </div>
-
-            <div className="border rounded-lg p-6 bg-card">
-              <Heading level={3} size="lg" className="mb-4">
-                Align variants
-              </Heading>
-
-              <Stack gap="md" align="start" className="mb-4">
-                <Text variant="small">align="start"</Text>
-                <div className="w-16 h-4 bg-muted rounded"></div>
-                <div className="w-24 h-4 bg-muted rounded"></div>
-              </Stack>
-
-              <Stack gap="md" align="center" className="mb-4">
-                <Text variant="small">align="center"</Text>
-                <div className="w-16 h-4 bg-accent rounded"></div>
-                <div className="w-24 h-4 bg-accent rounded"></div>
-              </Stack>
-
-              <Stack gap="md" align="end">
-                <Text variant="small">align="end"</Text>
-                <div className="w-16 h-4 bg-primary rounded"></div>
-                <div className="w-24 h-4 bg-primary rounded"></div>
-              </Stack>
-            </div>
-          </Grid>
-        </Stack>
-      </Section>
-
-      {/* Text Demo */}
-      <Section background="muted" spacing="lg" container={true}>
-        <Stack gap="lg">
-          <Heading level={2} size="2xl" eyebrow="Text Component">
-            Variants typographiques
-          </Heading>
-
-          <Grid cols={2} gap="lg">
-            <Stack gap="md">
-              <Heading level={3} size="lg">
-                Variants de style
-              </Heading>
-              <Text variant="default">Texte par défaut (variant="default")</Text>
-              <Text variant="muted">Texte atténué pour les descriptions (variant="muted")</Text>
-              <Text variant="small">Petit texte pour les notes (variant="small")</Text>
-              <Text variant="lead">Texte d'introduction avec plus d'impact (variant="lead")</Text>
-              <Text variant="large">Texte important et visible (variant="large")</Text>
-            </Stack>
-
-            <Stack gap="md">
-              <Heading level={3} size="lg">
-                Truncate & Clamp
-              </Heading>
-              <Text truncate className="w-48 bg-accent/20 p-2 rounded">
-                Ce texte très long sera tronqué avec des points de suspension
-              </Text>
-              <Text clamp={2} className="bg-accent/20 p-2 rounded">
-                Ce paragraphe plus long sera limité à exactement 2 lignes grâce au line-clamp, peu
-                importe sa longueur originale. Le reste sera coupé avec des points de suspension.
-              </Text>
-              <Text clamp={3} className="bg-accent/20 p-2 rounded">
-                Celui-ci est limité à 3 lignes. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris.
-              </Text>
-            </Stack>
-          </Grid>
-        </Stack>
-      </Section>
-
-      {/* Image Demo */}
-      <Section spacing="lg" container={true}>
-        <Stack gap="lg">
-          <Heading level={2} size="2xl" eyebrow="Image Component">
-            Images optimisées avec ratios
-          </Heading>
-
+          {/* Navigation cards */}
           <Grid cols={3} gap="lg">
-            <div className="space-y-4">
-              <Heading level={3} size="md">
-                Ratio 16:9
-              </Heading>
-              <Image
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop"
-                alt="Paysage montagne"
-                width={400}
-                ratio="16/9"
-                rounded="lg"
-                className="w-full"
-              />
-              <Text variant="small" align="center">
-                ratio="16/9" • rounded="lg"
-              </Text>
-            </div>
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Layers className="w-5 h-5" />
+                  Sprint 1
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Text variant="small" className="text-muted-foreground mb-3">
+                  Primitives + 3 blocks essentiels
+                </Text>
+                <div className="space-y-2">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/primitives" className="block">
+                      <div className="font-medium">Primitives</div>
+                      <div className="text-xs text-muted-foreground">
+                        Section, Stack, Text, Image...
+                      </div>
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/hero" className="block">
+                      <div className="font-medium">HeroBlock</div>
+                      <div className="text-xs text-muted-foreground">
+                        3 variants (split, centered, minimal)
+                      </div>
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="space-y-4">
-              <Heading level={3} size="md">
-                Ratio 4:3
-              </Heading>
-              <Image
-                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop"
-                alt="Lac nature"
-                width={400}
-                ratio="4/3"
-                objectFit="cover"
-                className="w-full"
-              />
-              <Text variant="small" align="center">
-                ratio="4/3" • objectFit="cover"
-              </Text>
-            </div>
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CreditCard className="w-5 h-5" />
+                  Sprint 2
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Text variant="small" className="text-muted-foreground mb-3">
+                  Blocks avancés + AppLayout
+                </Text>
+                <div className="space-y-2">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/advanced" className="block">
+                      <div className="font-medium">Advanced Blocks</div>
+                      <div className="text-xs text-muted-foreground">Pricing + MediaText</div>
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/layout" className="block">
+                      <div className="font-medium">AppLayout</div>
+                      <div className="text-xs text-muted-foreground">
+                        Header, Footer, Breadcrumbs
+                      </div>
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="space-y-4">
-              <Heading level={3} size="md">
-                Ratio 1:1
-              </Heading>
-              <Image
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop"
-                alt="Paysage carré"
-                width={400}
-                ratio="1/1"
-                rounded="full"
-                className="w-full"
-              />
-              <Text variant="small" align="center">
-                ratio="1/1" • rounded="full"
-              </Text>
-            </div>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Target className="w-5 h-5" />
+                  Tests & Démo
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Text variant="small" className="text-muted-foreground mb-3">
+                  Tous les composants en action
+                </Text>
+                <div className="space-y-2">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/features" className="block">
+                      <div className="font-medium">FeaturesBlock</div>
+                      <div className="text-xs text-muted-foreground">Grid, list, cards</div>
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start p-2 h-auto"
+                  >
+                    <a href="/cta" className="block">
+                      <div className="font-medium">CTABlock</div>
+                      <div className="text-xs text-muted-foreground">Banner, card, inline</div>
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </Grid>
         </Stack>
       </Section>
 
-      {/* Grid Demo */}
-      <Section background="accent" spacing="lg" container={true}>
+      {/* Théming demo */}
+      <Section background="accent" spacing="lg" container={true} id="theming">
         <Stack gap="lg">
-          <Heading level={2} size="2xl" eyebrow="Grid Component">
-            Grilles responsives
-          </Heading>
+          <div className="text-center">
+            <Heading level={2} size="xl" weight="semibold" className="mb-4">
+              Système de théming
+            </Heading>
+            <Text variant="default" className="text-accent-foreground/80 max-w-2xl mx-auto">
+              Dark mode, thèmes multiples et densité adaptable
+            </Text>
+          </div>
 
-          <Stack gap="xl">
-            <div>
-              <Heading level={3} size="lg" className="mb-4">
-                Grid cols={2}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-4 bg-background border rounded-lg">
+              <Heading level={3} size="md" className="mb-2">
+                Mode sombre/clair
               </Heading>
-              <Grid cols={2} gap="md">
-                {Array.from({ length: 4 }, (_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 bg-accent-foreground/10 rounded-lg flex items-center justify-center"
-                  >
-                    Item {i + 1}
-                  </div>
-                ))}
-              </Grid>
+              <Text variant="small" className="text-muted-foreground">
+                Toggle automatique avec persistance localStorage
+              </Text>
             </div>
 
-            <div>
-              <Heading level={3} size="lg" className="mb-4">
-                Grid cols={3} gap="lg"
+            <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+              <Heading level={3} size="md" className="mb-2">
+                Thèmes multiples
               </Heading>
-              <Grid cols={3} gap="lg">
-                {Array.from({ length: 6 }, (_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 bg-accent-foreground/10 rounded-lg flex items-center justify-center"
-                  >
-                    Item {i + 1}
-                  </div>
-                ))}
-              </Grid>
+              <Text variant="small" className="text-muted-foreground">
+                Ocean, Corporate avec scopes locaux
+              </Text>
             </div>
 
-            <div>
-              <Heading level={3} size="lg" className="mb-4">
-                Grid cols={4} gap="xs"
+            <div className="p-4 bg-muted border rounded-lg">
+              <Heading level={3} size="md" className="mb-2">
+                Densité adaptable
               </Heading>
-              <Grid cols={4} gap="xs">
-                {Array.from({ length: 8 }, (_, i) => (
-                  <div
-                    key={i}
-                    className="h-16 bg-accent-foreground/10 rounded flex items-center justify-center text-sm"
-                  >
-                    {i + 1}
-                  </div>
-                ))}
-              </Grid>
+              <Text variant="small" className="text-muted-foreground">
+                Compact, Normal, Comfortable
+              </Text>
             </div>
-          </Stack>
+          </div>
         </Stack>
       </Section>
 
-      <Section spacing="lg" className="bg-red-100">
-        <Container className="bg-blue-100 border-2 border-blue-500">
-          <Heading level={2}>Voici le Container visible !</Heading>
-          <Text>Le contenu est centré et limité en largeur</Text>
-        </Container>
-      </Section>
-
-      {/* Thème par défaut */}
-      <Section background="primary" spacing="md">
-        <Container className="border-2 border-primary-foreground/20">
-          <Text>Thème par défaut</Text>
-        </Container>
-      </Section>
-
-      {/* Thème Ocean */}
-      <Section background="primary" spacing="md" themeScope="ocean">
-        <Container className="border-2 border-primary-foreground/20">
-          <Text>Thème Ocean</Text>
-        </Container>
-      </Section>
-
-      {/* Thème Corporate */}
-      <Section background="primary" spacing="md" themeScope="corporate">
-        <Container className="border-2 border-primary-foreground/20">
-          <Text>Thème Corporate</Text>
-        </Container>
-      </Section>
-
-      {/* Footer */}
-      <Section as="footer" background="muted" spacing="md" container={true}>
-        <Text variant="small" align="center">
-          Toutes les primitives respectent la densité et les thèmes 🎨
-        </Text>
-      </Section>
+      {/* CTA final */}
+      <CTABlock
+        variant="banner"
+        size="lg"
+        background="primary"
+        eyebrow="Prêt à utiliser"
+        title="Architecture complète - Sprint 1 & 2 terminés"
+        subtitle="Système production-ready avec primitives, blocks, théming et layout. Tout est documenté et testé."
+        cta={{
+          text: "Commencer à développer",
+          href: "/primitives",
+          variant: "secondary",
+        }}
+        secondaryCta={{
+          text: "Voir la roadmap",
+          href: "#roadmap",
+          variant: "outline",
+        }}
+      />
     </div>
   );
 }

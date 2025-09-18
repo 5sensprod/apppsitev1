@@ -13,6 +13,7 @@ import {
   Grid3x3,
   Target,
   CreditCard,
+  Layout,
 } from "lucide-react";
 import { config } from "./config.js";
 import Home from "./pages/Home.jsx";
@@ -21,6 +22,8 @@ import HeroDemo from "./pages/HeroDemo.jsx";
 import FeaturesDemo from "./pages/FeaturesDemo.jsx";
 import CTADemo from "./pages/CTADemo.jsx";
 import AdvancedBlocksDemo from "./pages/AdvancedBlocksDemo.jsx";
+import LayoutDemo from "./pages/LayoutDemo.jsx";
+import { AppLayout } from "./components/layout/AppLayout.jsx";
 import { ThemeProvider, useTheme } from "@/design/ThemeProvider";
 import "@/design/tokens.css";
 
@@ -39,113 +42,123 @@ function NotFound() {
 }
 
 // Composant navigation avec toutes les pages de démo
-function Navigation() {
-  const { theme, setTheme } = useTheme();
+// function Navigation() {
+//   const { theme, setTheme } = useTheme();
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+//   const toggleTheme = () => {
+//     setTheme(theme === "light" ? "dark" : "light");
+//   };
 
-  return (
-    <nav className="border-b bg-card text-card-foreground">
-      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <Link to="/" className="inline-flex items-center font-semibold">
-          <HomeIcon className="size-4 mr-2" /> React Page Builder
-        </Link>
+//   return (
+//     <nav className="border-b bg-card text-card-foreground">
+//       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+//         <Link to="/" className="inline-flex items-center font-semibold">
+//           <HomeIcon className="size-4 mr-2" /> React Page Builder
+//         </Link>
 
-        {/* Navigation principale */}
-        <div className="hidden md:flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/primitives" className="inline-flex items-center">
-              <Layers className="size-4 mr-2" />
-              Primitives
-            </Link>
-          </Button>
+//         {/* Navigation principale */}
+//         <div className="hidden md:flex items-center gap-2">
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/primitives" className="inline-flex items-center">
+//               <Layers className="size-4 mr-2" />
+//               Primitives
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/hero" className="inline-flex items-center">
-              <Zap className="size-4 mr-2" />
-              Hero
-            </Link>
-          </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/hero" className="inline-flex items-center">
+//               <Zap className="size-4 mr-2" />
+//               Hero
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/features" className="inline-flex items-center">
-              <Grid3x3 className="size-4 mr-2" />
-              Features
-            </Link>
-          </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/features" className="inline-flex items-center">
+//               <Grid3x3 className="size-4 mr-2" />
+//               Features
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/cta" className="inline-flex items-center">
-              <Target className="size-4 mr-2" />
-              CTA
-            </Link>
-          </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/cta" className="inline-flex items-center">
+//               <Target className="size-4 mr-2" />
+//               CTA
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/advanced" className="inline-flex items-center">
-              <CreditCard className="size-4 mr-2" />
-              Advanced
-            </Link>
-          </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/advanced" className="inline-flex items-center">
+//               <CreditCard className="size-4 mr-2" />
+//               Advanced
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-              Vite
-            </a>
-          </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/layout" className="inline-flex items-center">
+//               <Layout className="size-4 mr-2" />
+//               Layout
+//             </Link>
+//           </Button>
 
-          <Button asChild variant="ghost" size="sm">
-            <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
-              Tailwind
-            </a>
-          </Button>
-        </div>
+//           <Button asChild variant="ghost" size="sm">
+//             <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+//               Vite
+//             </a>
+//           </Button>
 
-        {/* Menu mobile */}
-        <div className="md:hidden">
-          <Button variant="ghost" size="sm">
-            <Book className="size-4" />
-          </Button>
-        </div>
+//           <Button asChild variant="ghost" size="sm">
+//             <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
+//               Tailwind
+//             </a>
+//           </Button>
+//         </div>
 
-        {/* Toggle thème */}
-        <Button variant="secondary" size="sm" onClick={toggleTheme}>
-          {theme === "dark" ? <Sun className="size-4 mr-2" /> : <Moon className="size-4 mr-2" />}
-          Thème
-        </Button>
-      </div>
+//         {/* Menu mobile */}
+//         <div className="md:hidden">
+//           <Button variant="ghost" size="sm">
+//             <Book className="size-4" />
+//           </Button>
+//         </div>
 
-      {/* Barre de navigation secondaire mobile */}
-      <div className="md:hidden border-t bg-muted/50 px-4 py-2">
-        <div className="flex gap-2 overflow-x-auto">
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/primitives">Primitives</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/hero">Hero</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/features">Features</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/cta">CTA</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/advanced">Advanced</Link>
-          </Button>
-        </div>
-      </div>
-    </nav>
-  );
-}
+//         {/* Toggle thème */}
+//         <Button variant="secondary" size="sm" onClick={toggleTheme}>
+//           {theme === "dark" ? <Sun className="size-4 mr-2" /> : <Moon className="size-4 mr-2" />}
+//           Thème
+//         </Button>
+//       </div>
+
+//       {/* Barre de navigation secondaire mobile */}
+//       <div className="md:hidden border-t bg-muted/50 px-4 py-2">
+//         <div className="flex gap-2 overflow-x-auto">
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/primitives">Primitives</Link>
+//           </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/hero">Hero</Link>
+//           </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/features">Features</Link>
+//           </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/cta">CTA</Link>
+//           </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/advanced">Advanced</Link>
+//           </Button>
+//           <Button asChild variant="ghost" size="sm">
+//             <Link to="/layout">Layout</Link>
+//           </Button>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// }
 
 export default function App() {
   return (
     <ThemeProvider defaultTheme="system">
       <BrowserRouter>
-        <Navigation />
+        {/* <Navigation /> */}
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -154,6 +167,20 @@ export default function App() {
             <Route path="/features" element={<FeaturesDemo />} />
             <Route path="/cta" element={<CTADemo />} />
             <Route path="/advanced" element={<AdvancedBlocksDemo />} />
+            <Route
+              path="/layout"
+              element={
+                <AppLayout
+                  showBreadcrumbs={true}
+                  breadcrumbs={[
+                    { label: "Sprint 2", href: "/advanced" },
+                    { label: "Layout & Navigation", current: true },
+                  ]}
+                >
+                  <LayoutDemo />
+                </AppLayout>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
@@ -203,6 +230,12 @@ export default function App() {
                     className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Advanced Blocks - PricingBlock & MediaTextBlock (Sprint 2)
+                  </Link>
+                  <Link
+                    to="/layout"
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    AppLayout - Header, Footer & Breadcrumbs (Sprint 2 Phase 2.2)
                   </Link>
                 </div>
               </div>
