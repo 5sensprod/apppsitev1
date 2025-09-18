@@ -2,11 +2,23 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Button } from "./components/ui/button.jsx";
 import { cn } from "./lib/utils.js";
-import { Rocket, Sun, Moon, Home as HomeIcon, Book, Layers, Zap } from "lucide-react";
+import {
+  Rocket,
+  Sun,
+  Moon,
+  Home as HomeIcon,
+  Book,
+  Layers,
+  Zap,
+  Grid3x3,
+  Target,
+} from "lucide-react";
 import { config } from "./config.js";
 import Home from "./pages/Home.jsx";
 import Primitives from "./pages/Primitives.jsx";
 import HeroDemo from "./pages/HeroDemo.jsx";
+import FeaturesDemo from "./pages/FeaturesDemo.jsx";
+import CTADemo from "./pages/CTADemo.jsx";
 import { ThemeProvider, useTheme } from "@/design/ThemeProvider";
 import "@/design/tokens.css";
 
@@ -51,7 +63,21 @@ function Navigation() {
           <Button asChild variant="ghost" size="sm">
             <Link to="/hero" className="inline-flex items-center">
               <Zap className="size-4 mr-2" />
-              HeroBlock
+              Hero
+            </Link>
+          </Button>
+
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/features" className="inline-flex items-center">
+              <Grid3x3 className="size-4 mr-2" />
+              Features
+            </Link>
+          </Button>
+
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/cta" className="inline-flex items-center">
+              <Target className="size-4 mr-2" />
+              CTA
             </Link>
           </Button>
 
@@ -89,7 +115,13 @@ function Navigation() {
             <Link to="/primitives">Primitives</Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <Link to="/hero">HeroBlock</Link>
+            <Link to="/hero">Hero</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/features">Features</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/cta">CTA</Link>
           </Button>
         </div>
       </div>
@@ -107,6 +139,8 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/primitives" element={<Primitives />} />
             <Route path="/hero" element={<HeroDemo />} />
+            <Route path="/features" element={<FeaturesDemo />} />
+            <Route path="/cta" element={<CTADemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
@@ -138,6 +172,12 @@ export default function App() {
                     className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     HeroBlock - 3 variants (split, centered, minimal)
+                  </Link>
+                  <Link
+                    to="/features"
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    FeaturesBlock - 3 variants (grid, list, cards)
                   </Link>
                 </div>
               </div>

@@ -41,7 +41,7 @@ const imageVariants = cva(
  * @param {string} props.ratio - Ratio d'aspect ('16/9'|'4/3'|'1/1'|'3/2') calcule height
  * @param {string} props.sizes - Attribute sizes pour responsive
  * @param {string} props.loading - Loading strategy ('lazy'|'eager')
- * @param {string} props.fetchPriority - Priorité fetch ('high'|'low'|'auto')
+ * @param {string} props.fetchpriority - Priorité fetch ('high'|'low'|'auto')
  * @param {string} props.objectFit - Ajustement ('cover'|'contain'|'fill'|'scale-down'|'none')
  * @param {string} props.rounded - Bordures arrondies ('none'|'sm'|'md'|'lg'|'xl'|'full')
  * @param {string} props.className
@@ -54,7 +54,7 @@ export function Image({
   ratio,
   sizes,
   loading = "lazy",
-  fetchPriority = "auto",
+  fetchpriority = "auto",
   objectFit = "cover",
   rounded = "md",
   className,
@@ -88,7 +88,7 @@ export function Image({
       height={computedHeight}
       sizes={sizes}
       loading={loading}
-      fetchPriority={fetchPriority}
+      fetchpriority={fetchpriority}
       decoding="async"
       className={cn(imageVariants({ objectFit, rounded }), className)}
       data-ratio={ratio}
@@ -105,7 +105,7 @@ Image.propTypes = {
   ratio: PropTypes.string,
   sizes: PropTypes.string,
   loading: PropTypes.oneOf(["lazy", "eager"]),
-  fetchPriority: PropTypes.oneOf(["high", "low", "auto"]),
+  fetchpriority: PropTypes.oneOf(["high", "low", "auto"]),
   objectFit: PropTypes.oneOf(["cover", "contain", "fill", "scale-down", "none"]),
   rounded: PropTypes.oneOf(["none", "sm", "md", "lg", "xl", "full"]),
   className: PropTypes.string,
